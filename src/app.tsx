@@ -1,6 +1,6 @@
-import "./app.css";
-import { Fragment, useEffect, useState } from "react";
-import Unity, { UnityContext } from "react-unity-webgl";
+import './app.css';
+import { Fragment, useEffect, useState } from 'react';
+import Unity, { UnityContext } from 'react-unity-webgl';
 
 interface Vector2 {
   x: number;
@@ -9,15 +9,15 @@ interface Vector2 {
 
 // This is the context that Unity will use to communicate with the React app.
 const unityContext = new UnityContext({
-  productName: "React Unity WebGL Tests",
-  companyName: "Jeffrey Lanters",
+  productName: 'React Unity WebGL Tests',
+  companyName: 'Jeffrey Lanters',
   // The url's of the Unity WebGL runtime, these paths are public and should be
   // accessible from the internet and relative to the index.html.
-  loaderUrl: "unitybuild/2020.1/myunityapp.loader.js",
-  dataUrl: "unitybuild/2020.1/myunityapp.data",
-  frameworkUrl: "unitybuild/2020.1/myunityapp.framework.js",
-  codeUrl: "unitybuild/2020.1/myunityapp.wasm",
-  streamingAssetsUrl: "unitybuild/2020.1/streamingassets",
+  loaderUrl: 'unitybuild/2020.1/myunityapp.loader.js',
+  dataUrl: 'unitybuild/2020.1/myunityapp.data',
+  frameworkUrl: 'unitybuild/2020.1/myunityapp.framework.js',
+  codeUrl: 'unitybuild/2020.1/myunityapp.wasm',
+  streamingAssetsUrl: 'unitybuild/2020.1/streamingassets',
   // Additional configuration options.
   webglContextAttributes: {
     preserveDrawingBuffer: true,
@@ -31,18 +31,18 @@ function App() {
   const [rotationSpeed, setRotationSpeed] = useState<number>(30);
   const [cubeRotation, setCubeRotation] = useState<number>(0);
   const [clickPosition, setClickPosition] = useState<Vector2>({ x: 0, y: 0 });
-  const [saidMessage, setSaidMessage] = useState<string>("Nothing");
+  const [saidMessage, setSaidMessage] = useState<string>('Nothing');
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [progression, setProgression] = useState<number>(0);
 
   // When the component is mounted, we'll register some event listener.
   useEffect(() => {
-    unityContext.on("canvas", handleOnUnityCanvas);
-    unityContext.on("progress", handleOnUnityProgress);
-    unityContext.on("loaded", handleOnUnityLoaded);
-    unityContext.on("RotationDidUpdate", handleOnUnityRotationDidUpdate);
-    unityContext.on("ClickedPosition", handleOnUnityClickedPosition);
-    unityContext.on("Say", handleOnUnitySayMessage);
+    unityContext.on('canvas', handleOnUnityCanvas);
+    unityContext.on('progress', handleOnUnityProgress);
+    unityContext.on('loaded', handleOnUnityLoaded);
+    unityContext.on('RotationDidUpdate', handleOnUnityRotationDidUpdate);
+    unityContext.on('ClickedPosition', handleOnUnityClickedPosition);
+    unityContext.on('Say', handleOnUnitySayMessage);
     // When the component is unmounted, we'll unregister the event listener.
     return function () {
       unityContext.removeAllEventListeners();
@@ -51,12 +51,12 @@ function App() {
 
   // When the rotation speed has been updated, it will be sent to Unity.
   useEffect(() => {
-    unityContext.send("MeshCrate", "SetRotationSpeed", rotationSpeed);
+    unityContext.send('MeshCrate', 'SetRotationSpeed', rotationSpeed);
   }, [rotationSpeed]);
 
   // Built-in event invoked when the Unity canvas is ready to be interacted with.
   function handleOnUnityCanvas(canvas: HTMLCanvasElement) {
-    canvas.setAttribute("role", "unityCanvas");
+    canvas.setAttribute('role', 'unityCanvas');
   }
 
   // Built-in event invoked when the Unity app's progress has changed.
@@ -110,14 +110,6 @@ function App() {
   return (
     <Fragment>
       <div className="wrapper">
-        {/* Introduction text */}
-        <h1>React Unity WebGL Tests</h1>
-        <p>
-          In this React Application we'll explore the possibilities with the
-          React Unity WebGL Module. Use the built-in events, custom events,
-          mount, unmount, press the buttons and resize the view to see the magic
-          in action.
-        </p>
         {/* Some buttons to interact */}
         <button onClick={handleOnClickUnMountUnity}>(Un)mount Unity</button>
         <button onClick={handleOnClickIncreaseSpeed}>Increase speed</button>
@@ -132,7 +124,7 @@ function App() {
                   <div className="progress-bar">
                     <div
                       className="progress-bar-fill"
-                      style={{ width: progression * 100 + "%" }}
+                      style={{ width: progression * 100 + '%' }}
                     />
                   </div>
                 </div>
@@ -151,7 +143,7 @@ function App() {
           </Fragment>
         )}
         <h6>
-          Made with love by{" "}
+          Made with love by{' '}
           <a href="https://github.com/jeffreylanters">Jeffrey Lanters</a>
         </h6>
       </div>

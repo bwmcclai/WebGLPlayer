@@ -13,6 +13,23 @@ const unityContext = new UnityContext({
   companyName: 'Jeffrey Lanters',
   // The url's of the Unity WebGL runtime, these paths are public and should be
   // accessible from the internet and relative to the index.html.
+  loaderUrl: 'build/FactoryVue_Web.loader.js',
+  dataUrl: 'build/FactoryVue_Web.data',
+  frameworkUrl: 'build/FactoryVue_Web.framework.js',
+  codeUrl: 'build/FactoryVue_Web.wasm',
+  streamingAssetsUrl: 'build/streamingassets',
+  // Additional configuration options.
+  webglContextAttributes: {
+    preserveDrawingBuffer: true,
+  },
+});
+
+/* // This is the context that Unity will use to communicate with the React app.
+const unityContext = new UnityContext({
+  productName: 'React Unity WebGL Tests',
+  companyName: 'Jeffrey Lanters',
+  // The url's of the Unity WebGL runtime, these paths are public and should be
+  // accessible from the internet and relative to the index.html.
   loaderUrl: 'unitybuild/2020.1/myunityapp.loader.js',
   dataUrl: 'unitybuild/2020.1/myunityapp.data',
   frameworkUrl: 'unitybuild/2020.1/myunityapp.framework.js',
@@ -22,7 +39,7 @@ const unityContext = new UnityContext({
   webglContextAttributes: {
     preserveDrawingBuffer: true,
   },
-});
+}); */
 
 // This is the React component that will be rendering the Unity app.
 function App() {
@@ -142,10 +159,6 @@ function App() {
             </p>
           </Fragment>
         )}
-        <h6>
-          Made with love by{' '}
-          <a href="https://github.com/jeffreylanters">Jeffrey Lanters</a>
-        </h6>
       </div>
     </Fragment>
   );
